@@ -20,7 +20,9 @@ namespace EShopAPI.Configuration
             builder.Property(x => x.UserId).HasMaxLength(450).IsRequired();
             builder.Property(x => x.ShipPhoneNumber).HasMaxLength(20).IsUnicode(false);
             builder.Property(x => x.ShipName).IsRequired().HasMaxLength(250);
-        
+
+            builder.HasOne(x => x.AppUser).WithMany(x => x.Orders).HasForeignKey(x => x.UserId);
+
         }
     }
 }

@@ -18,9 +18,13 @@ namespace EShopAPI.Configuration
             builder.Property(x => x.Price).HasColumnType("decimal(18, 2)");
             builder.Property(x => x.DateCreated).HasColumnType("datetime");
             builder.Property(x => x.UserId).HasMaxLength(450).IsRequired();
+
             builder.HasOne(x => x.Product).WithMany(x => x.Carts).HasForeignKey(x => x.ProductId);
-            
-      
+            builder.HasOne(x => x.AppUser).WithMany(x => x.Carts).HasForeignKey(x => x.UserId);
+
+
+
+
         }
     }
 }

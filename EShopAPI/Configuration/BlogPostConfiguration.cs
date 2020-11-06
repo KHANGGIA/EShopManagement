@@ -24,7 +24,7 @@ namespace EShopAPI.Configuration
             builder.Property(x => x.BlogCategoryId).HasDefaultValueSql("(newid())");
 
             builder.HasOne(x => x.BlogCategory).WithMany(x => x.BlogPosts).HasForeignKey(x => x.BlogCategoryId);
-
+          
         }
     }
 }

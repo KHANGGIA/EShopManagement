@@ -4,14 +4,16 @@ using EShopAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EShopAPI.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    partial class EShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201106053017_AspNetCoreIdentityDatabase")]
+    partial class AspNetCoreIdentityDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,16 +58,6 @@ namespace EShopAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "D9622B5E-5DA0-4F11-A63F-7B042BBCC924",
-                            ConcurrencyStamp = "bae870b1-e1a4-45f0-a3c6-7fc6b32339ed",
-                            Description = "Administrator Role",
-                            Name = "Admin",
-                            NormalizedName = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("EShopAPI.Models.AppUser", b =>
@@ -133,27 +125,6 @@ namespace EShopAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "EB178765-4E99-4856-A3EA-55BD3A9552A2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "52a533b5-0341-47e2-bf56-0136704b9df5",
-                            DoB = new DateTime(1996, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "khanggiavu250296@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Khang",
-                            LastName = "Vu",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "khanggiavu250296@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGtizi7B0XOUkItIMS0pYuR64lA+8n6cz6c7wFKeytxxGhRPm1b56BNrFJ2IWdOPOA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("EShopAPI.Models.BlogCategory", b =>
@@ -725,13 +696,6 @@ namespace EShopAPI.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "EB178765-4E99-4856-A3EA-55BD3A9552A2",
-                            RoleId = "D9622B5E-5DA0-4F11-A63F-7B042BBCC924"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

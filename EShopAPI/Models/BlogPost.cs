@@ -17,6 +17,7 @@ namespace EShopAPI.Models
         public string Image { get; set; }
         public Guid? BlogCategoryId { get; set; }
 
+        public AppUser AppUser { get; set; }
         public BlogCategory BlogCategory { get; set; }
     }
 }

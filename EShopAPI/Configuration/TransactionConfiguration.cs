@@ -19,6 +19,8 @@ namespace EShopAPI.Configuration
             builder.Property(x => x.Amount).HasColumnType("decimal(18,2)");
             builder.Property(x => x.TransactionDate).HasColumnType("datetime");
 
+            builder.HasOne(x => x.AppUser).WithMany(x => x.Transactions).HasForeignKey(x => x.UserId);
+
         }
     }
 }

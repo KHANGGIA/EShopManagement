@@ -1,10 +1,13 @@
 ﻿using EShopAPI.Configuration;
+using EShopAPI.DataSeeding;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace EShopAPI.Models
 {
-    public class EShopDbContext:DbContext
+    public class EShopDbContext:IdentityDbContext<AppUser,AppRole,string>
     {
         public EShopDbContext(DbContextOptions<EShopDbContext>options) :base(options){}
 
@@ -31,8 +34,20 @@ namespace EShopAPI.Models
             modelBuilder.ApplyConfiguration(new BlogPostConfiguration());
             modelBuilder.ApplyConfiguration(new BlogCategoryConfiguration());
 
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+
+            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("AppUserLogins").HasKey(x=>x.UserId);
+            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("AppUserRoles").HasKey(x =>new { x.UserId,x.RoleId });
+            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("AppUserTokens").HasKey(x=>x.UserId);
+            //Seed Data
+             modelBuilder.SeedData();
         }
 
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<AppConfig> AppConfigs { get; set; }
